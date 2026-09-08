@@ -42,7 +42,9 @@
   var saveButton=document.getElementById('saveContent');if(saveButton)saveButton.addEventListener('click',function(){collect();render()});
   setupResume();setupProjects();render();
 }());
-</script></body></html>
+</script><script>(function(){function esc(s){return String(s||'').replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}function renderProjects(){var ps;try{ps=JSON.parse(localStorage.getItem('pv9-projects')||'null')}catch(e){}if(!ps||!ps.length)return;var box=document.getElementById('projects');if(!box)return;box.innerHTML='';ps.forEach(function(p,i){var a=document.createElement('article');a.className='project';a.hidden=i!==0;a.innerHTML='<div class="visual">'+(p.image?'<img src="'+p.image+'" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">':'')+'<span>PROJECT / '+String(i+1).padStart(2,'0')+'</span><strong>'+String(i+1).padStart(2,'0')+'</strong></div><div class="copy"><h3>'+esc(p.title)+'</h3><p>'+esc(p.desc)+'</p></div>';box.appendChild(a)});var pager=document.createElement('div');pager.className='pager';pager.innerHTML='<button class="arrow" id="v9prev">←</button><span id="v9count">01 / '+String(ps.length).padStart(2,'0')+'</span><button class="arrow" id="v9next">→</button>';box.appendChild(pager);var i=0;function show(n){i=(n+ps.length)%ps.length;box.querySelectorAll('.project').forEach(function(x,j){x.hidden=j!==i});document.getElementById('v9count').textContent=String(i+1).padStart(2,'0')+' / '+String(ps.length).padStart(2,'0')}document.getElementById('v9prev').onclick=function(){show(i-1)};document.getElementById('v9next').onclick=function(){show(i+1)}}renderProjects();var s=document.getElementById('saveContent');if(s)s.addEventListener('click',function(){setTimeout(renderProjects,20)})}());</script></body></html>
+
+
 
 
 
